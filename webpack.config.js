@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = [
     {
         mode: 'development',
-        entry: './src/main/electron.ts',
+        entry: './src/main/app.ts',
         target: "electron-main",
         module: {
             rules: [
@@ -12,39 +12,12 @@ module.exports = [
                     test: /\.ts$/,
                     include: /src/,
                     use: [{loader: 'ts-loader'}]
-                },
-                {
-                    test: /\.(scss)$/,
-                    use: [
-                        {
-                            // Adds CSS to the DOM by injecting a `<style>` tag
-                            loader: 'style-loader'
-                        },
-                        {
-                            // Interprets `@import` and `url()` like `import/require()` and will resolve them
-                            loader: 'css-loader'
-                        },
-                        {
-                            // Loader for webpack to process CSS with PostCSS
-                            loader: 'postcss-loader',
-                            options: {
-                                plugins: function () {
-                                    return [
-                                        require('autoprefixer')
-                                    ];
-                                }
-                            }
-                        },
-                        {
-                            // Loads a SASS/SCSS file and compiles it to CSS
-                            loader: 'sass-loader'
-                        }]
                 }
                 ]
         },
         output: {
             path: __dirname + '/dist',
-            filename: 'electron.js'
+            filename: 'app.js'
         }
     },
     {
