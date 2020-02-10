@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>8 Queens Solver</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <style type="text/css">
+        body {
+            font: caption;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .left {
+            flex: 75%;
+        }
+
+        .right {
+            flex: 25%;
+        }
+    </style>
+</head>
+
+<body>
+<div class="row">
+
+    <div class="left">
+        <h1>Solution</h1>
+        <h3 id="solution"></h3>
+    </div>
+
+    <div class="right">
+        <h1>Settings</h1>
+        <form id="settingsform">
+            <div class="form-group">
+                <p>Queen Icon</p>
+                <input type="radio" name="WhiteQueen" value="queen-icon" id="WhiteQueen">
+                <label for="WhiteQueen">White Queen</label>
+                <br>
+                <input type="radio" name="BlackQueen" value="queen-icon" id="BlackQueen">
+                <label for="BlackQueen">Black Queen</label>
+            </div>
+            <div class="form-group">
+                <p>Board Background</p>
+                <input type="radio" name="ChessBoard" value="board-bk" id="ChessBoard">
+                <label for="ChessBoard">Chess Board</label>
+                <br>
+            </div>
+
+            <input type="submit" value="Update Settings">
+        </form>
+        <button class="btn btn-primary" id="solutionbtn">View Solution</button>
+    </div>
+
+</div>
+
+<script src="board-view.js"></script>
+<script src="settings-view.js"></script>
+<script src="react.js"></script>
+</body>
+</html>

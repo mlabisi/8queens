@@ -1,0 +1,35 @@
+{
+  "name": "8queens",
+  "version": "1.0.0",
+  "description": "AI + GUI for solving the 8 Queens Problem",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config ./webpack.config.js",
+    "start": "npm run build && electron ./dist/electron.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^16.9.19",
+    "@types/react-dom": "^16.9.5",
+    "autoprefixer": "^9.7.4",
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.1",
+    "css-loader": "^3.4.2",
+    "electron": "^8.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.13.1",
+    "postcss-loader": "^3.0.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.1.3",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "vue": "^2.6.11"
+  }
+}
