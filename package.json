@@ -2,6 +2,7 @@
   "name": "8queens",
   "version": "1.0.0",
   "description": "AI + GUI for solving the 8 Queens Problem",
+  "repository": "https://github.com/mlabisi/8queens.git",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config ./webpack.config.js",
