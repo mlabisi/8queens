@@ -1,68 +1,75 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { spawn } = require('child_process');
 
-module.exports = [
-    {
-        mode: 'development',
-        entry: './src/main/app.ts',
-        target: "electron-main",
-        module: {
-            rules: [
-                {
-                    test: /\.ts$/,
-                    include: /src/,
-                    use: [{loader: 'ts-loader'}]
-                }
-                ]
+const SRC_DIR = path.resolve(__dirname, 'src');
+const OUTPUT_DIR = path.resolve(__dirname, 'dist');
+
+const defaultInclude = [SRC_DIR];
+
+
+module.exports = {
+    entry: SRC_DIR + '/index.js',
+    target: 'electron-renderer',
+    output: {
+        path: OUTPUT_DIR,
+        publicPath: '/dist/',
+        filename: 'bundle.js'
+    },
+
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+                include: defaultInclude
+            },
+            {
+                test: /\.jsx?$/,
+                use: [{ loader: 'babel-loader' }],
+                include: defaultInclude
+            },
+            {
+                test: /\.(jpe?g|png|gif)$/,
+                use: [{ loader: 'file-loader?name=img/[name]__[hash:base64:5].[ext]' }],
+                include: defaultInclude
+            },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2)$/,
+                use: [{ loader: 'file-loader?name=font/[name]__[hash:base64:5].[ext]' }],
+                include: defaultInclude
+            }
+        ]
+
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './public/index.html',
+            filename: "index.html"
+        }),
+
+        // new webpack.DefinePlugin({
+        //     'process.env.NODE_ENV': JSON.stringify('development')
+        // })
+    ],
+    devtool: 'cheap-source-map',
+    devServer: {
+        contentBase: OUTPUT_DIR,
+        stats: {
+            colors: true,
+            chunks: false,
+            children: false
         },
-        output: {
-            path: __dirname + '/dist',
-            filename: 'app.js'
+        before() {
+            spawn(
+                'electron',
+                ['./public/main.js'],
+                { shell: true, env: process.env, stdio: 'inherit' }
+            )
+                .on('close', code => process.exit(0))
+                .on('error', spawnError => console.error(spawnError));
+
         }
-    },
-    {
-        mode: 'development',
-        entry: './src/renderer/board-view.tsx',
-        target: "electron-renderer",
-        devtool: 'source-map',
-        module: {
-            rules: [{
-                test: /\.ts(x?)$/,
-                include: /src/,
-                use: [{loader: 'ts-loader'}]
-            }]
-        },
-        output: {
-            path: __dirname + '/dist',
-            filename: 'board-view.js'
-        },
-        plugins: [
-            new HtmlWebpackPlugin({
-                template: "./src/index.html"
-            })
-        ]
-    },
-    {
-        mode: 'development',
-        entry: './src/renderer/settings-view.tsx',
-        target: "electron-renderer",
-        devtool: 'source-map',
-        module: {
-            rules: [{
-                test: /\.ts(x?)$/,
-                include: /src/,
-                use: [{loader: 'ts-loader'}]
-            }]
-        },
-        output: {
-            path: __dirname + '/dist',
-            filename: 'settings-view.js'
-        },
-        plugins: [
-            new HtmlWebpackPlugin({
-                template: "./src/index.html"
-            })
-        ]
     }
-
-];
+};
