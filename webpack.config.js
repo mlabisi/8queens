@@ -22,7 +22,7 @@ module.exports = [
     },
     {
         mode: 'development',
-        entry: './src/renderer/board-view.tsx',
+        entry: './src/renderer/renderme.tsx',
         target: "electron-renderer",
         devtool: 'source-map',
         module: {
@@ -34,29 +34,7 @@ module.exports = [
         },
         output: {
             path: __dirname + '/dist',
-            filename: 'board-view.js'
-        },
-        plugins: [
-            new HtmlWebpackPlugin({
-                template: "./src/index.html"
-            })
-        ]
-    },
-    {
-        mode: 'development',
-        entry: './src/renderer/settings-view.tsx',
-        target: "electron-renderer",
-        devtool: 'source-map',
-        module: {
-            rules: [{
-                test: /\.ts(x?)$/,
-                include: /src/,
-                use: [{loader: 'ts-loader'}]
-            }]
-        },
-        output: {
-            path: __dirname + '/dist',
-            filename: 'settings-view.js'
+            filename: 'renderme.js'
         },
         plugins: [
             new HtmlWebpackPlugin({
