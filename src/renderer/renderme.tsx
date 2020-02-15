@@ -1,12 +1,11 @@
 let $ = require('jquery');
 import Board from "../classes/Board";
-import {Chessboard} from 'cm-chessboard';
 let {solve} = require('../solver/functions');
 
 let newBoard = new Board(8);
 
 function toFEN(og) {
-    return "empty";
+    return "start";
 }
 
 $(function () {
@@ -15,16 +14,23 @@ $(function () {
         switch($(this)[0].elements.mode.value) {
             case "bb":
                 solve(newBoard);
-                console.log($(this));
+                // @ts-ignore
+                window.board.setPosition(toFEN(newBoard.toString()));
                 break;
             case "hc":
                 solve(newBoard);
+                // @ts-ignore
+                window.board.setPosition(toFEN(newBoard.toString()));
                 break;
             case "an":
                 solve(newBoard);
+                // @ts-ignore
+                window.board.setPosition(toFEN(newBoard.toString()));
                 break;
             default:
                 solve(newBoard);
+                // @ts-ignore
+                window.board.setPosition(toFEN(newBoard.toString()));
         }
     });
 });
