@@ -1,4 +1,4 @@
-import Queen from "./classes/Queen";
+import Queen from "../classes/Queen";
 
 function checkIsSafe(currentQueens, row, col) {
     const newQueen = new Queen(row, col);
