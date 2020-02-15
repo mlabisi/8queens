@@ -5,7 +5,17 @@ let {solve} = require('../solver/functions');
 let newBoard = new Board(8);
 
 function toFEN(og) {
-    return "start";
+    og = og.split('').map(val => parseInt(val) + 1);
+    let str = "";
+    for(let i = 0; i < 8; i++) {
+        str += (og[i] === 1 ? "" : og[i] - 1)
+            + "q" + ((8 - og[i]) === 0 ? "" : (8 - og[i]));
+
+        if (i < 7) {
+            str += "/";
+        }
+    }
+    return str;
 }
 
 $(function () {
@@ -14,23 +24,19 @@ $(function () {
         switch($(this)[0].elements.mode.value) {
             case "bb":
                 solve(newBoard);
-                // @ts-ignore
-                window.board.setPosition(toFEN(newBoard.toString()));
                 break;
             case "hc":
                 solve(newBoard);
-                // @ts-ignore
-                window.board.setPosition(toFEN(newBoard.toString()));
                 break;
             case "an":
                 solve(newBoard);
-                // @ts-ignore
-                window.board.setPosition(toFEN(newBoard.toString()));
                 break;
             default:
                 solve(newBoard);
-                // @ts-ignore
-                window.board.setPosition(toFEN(newBoard.toString()));
+
         }
+
+        // @ts-ignore
+        window.board.setPosition(toFEN(newBoard.toString()));
     });
 });
