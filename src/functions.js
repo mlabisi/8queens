@@ -40,7 +40,6 @@ function branchOrBound(board, row, n) {
 
 function solve(board) {
     if (branchOrBound(board, 0, board.n) !== false) {
-        console.log(board.toString());
         return board.toString();
     }
 
