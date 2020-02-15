@@ -1,4 +1,5 @@
-const path = require('path');
+const webpack = require("webpack");
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = [
@@ -39,7 +40,16 @@ module.exports = [
         plugins: [
             new HtmlWebpackPlugin({
                 template: "./src/index.html"
-            })
+            }),
+            new webpack.ProvidePlugin({
+                $: "jquery",
+                jQuery: "jquery",
+                "window.jQuery": "jquery"
+            }),
+            new CopyPlugin([
+                { from: './src/assets/images/chessboard-sprite.svg', to: './assets/images/chessboard-sprite.svg' },
+                { from: './src/styles/cm-chessboard.css', to: './styles/cm-chessboard.css' }
+            ])
         ]
     }
 
