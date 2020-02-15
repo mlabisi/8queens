@@ -34,21 +34,24 @@
 
     <div class="left">
         <h1>Solution</h1>
-        <h3 id="solution"></h3>
         <div class="board" id="board"></div>
     </div>
 
     <div class="right">
-        <h1>Settings</h1>
+        <h1>Algorithm Selection</h1>
         <form id="settingsform">
             <div>
-                <input type="radio" id="text" name="mode" value="text"
+                <input type="radio" id="branch-or-bound" name="mode" value="bb"
                        checked>
-                <label for="text">Text</label>
+                <label for="branch-or-bound">Branch or Bound</label>
             </div>
             <div>
-                <input type="radio" id="image" name="mode" value="image">
-                <label for="image">Image</label>
+                <input type="radio" id="hill-climbing" name="mode" value="hc">
+                <label for="hill-climbing">Hill Climbing</label>
+            </div>
+            <div>
+                <input type="radio" id="annealing" name="mode" value="an">
+                <label for="annealing">Annealing</label>
             </div>
             <div>
                 <button type="update">View Solution</button>
@@ -58,6 +61,20 @@
 
 </div>
 
+<script type="module">
+    import {Chessboard} from '../node_modules/cm-chessboard/src/cm-chessboard/Chessboard.js';
+
+    let props = {
+        position: "empty", // set as fen, "start" or "empty"
+        style: {
+            cssClass: "default",
+            showCoordinates: false, // show ranks and files
+            showBorder: true, // display a border around the board
+        }
+    };
+
+    new Chessboard(document.getElementById("board"), props);
+</script>
 <script src="renderme.js"></script>
 </body>
 </html>
