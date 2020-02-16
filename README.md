@@ -52,8 +52,10 @@ _If the algorithm gets stuck at the local optimum, a new random state will be ge
 
 ## Built With 🛠
 [Electron](https://www.electronjs.org/)
+
 [Node.js](https://nodejs.org/en/)
 
 ## Special Thanks To 💖
 [selimfirat](https://github.com/selimfirat/ai-n-queens)
+
 [cm-chessboard](https://github.com/shaack/cm-chessboard)
