@@ -1,10 +1,5 @@
 import Queen from "../classes/Queen";
 import Board from "../classes/Board";
-let $ = require('jquery');
-
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-}
 
 function getCost(currentQueens) {
     let h = 0;
@@ -20,6 +15,31 @@ function getCost(currentQueens) {
         }
     }
     return h;
+}
+
+function crossovers(population, n) {
+    for (let i = 0; i < population.length; i += 2) {
+        let odds = Math.random() * n;
+
+        for (let j = 0; j < odds; j++) {
+            let temp = population[i].queens;
+            population[i].queens = population[i + 1].queens;
+            population[i + 1].queens = temp;
+        }
+    }
+
+    return population;
+}
+
+function mutate(queens, odds) {
+    let vals = [0, 1, 2, 3, 4, 5, 6, 7];
+    vals.sort(() => Math.random() - 0.5);
+
+    if (odds >= Math.random()) {
+        queens.find(q => q.row === vals[0]).col = vals[1];
+    }
+
+    return queens;
 }
 
 function checkIsSafe(currentQueens, row, col) {
@@ -63,8 +83,8 @@ function branchOrBound(board, row, n) {
 }
 
 function hillClimbing(board, n) {
-    let randomSolution = new Board(8, false);
-    let min = getCost(randomSolution.queens);
+    let randomState = Board.getRandomState(n);
+    let min = getCost(randomState);
 
     let i = 0;
 
@@ -75,16 +95,16 @@ function hillClimbing(board, n) {
 
         for (let row = 0; row < n && defaultMin; row++) {
             for (let col = 0; col < n; col++) {
-                if(col === randomSolution.queens.find(q => q.row === row).col) {
+                if (col === randomState.find(q => q.row === row).col) {
                     continue;
                 }
 
-                let copy = Object.assign({}, randomSolution);
-                copy.queens.find(q => q.row === row).col = col;
+                let copyState = Object.assign([], randomState);
+                copyState.find(q => q.row === row).col = col;
 
-                let cost = getCost(copy.queens);
+                let cost = getCost(copyState);
                 if (min > cost) {
-                    randomSolution.queens.find(q => q.row === row).col = col;
+                    randomState.find(q => q.row === row).col = col;
                     min = cost;
                     defaultMin = false;
                     break;
@@ -93,11 +113,41 @@ function hillClimbing(board, n) {
         }
 
         if (localMin === min) {
-            randomSolution = new Board(8, false)
+            randomState = Board.getRandomState(n);
         }
     }
 
-    board.queens =  min === 0 ? randomSolution.queens : [];
+    board.queens = min === 0 ? randomState : [];
+}
+
+function genetics(board, n) {
+    let popSize = 10;
+    let genSize = 50000;
+    let odds = 0.75;
+    let population = Array.of(Board);
+    let maxFitness = n * (n - 1) / 2;
+
+    for (let i = 0; i < popSize; i++) {
+        population[i] = new Board(n, false);
+    }
+
+    for (let gen = 0; gen < genSize; gen++) {
+        population.sort(t => maxFitness - getCost(t.queens));
+        population = crossovers(population, n);
+
+        for (let i = 0; i < popSize; i++) {
+            if ((maxFitness - getCost(population[i].queens)) === maxFitness) {
+                board.queens = population[i].queens;
+                return true;
+            }
+
+            population[i].queens = mutate(population[i].queens, odds);
+            if ((maxFitness - getCost(population[i].queens)) === maxFitness) {
+                board.queens = population[i].queens;
+                return true;
+            }
+        }
+    }
 }
 
 function solve(board, method = 1) {
@@ -109,12 +159,14 @@ function solve(board, method = 1) {
         case 2:
             hillClimbing(board, board.n);
             break;
+        case 3:
+            genetics(board, board.n);
+            break;
     }
 }
 
 export {
     checkIsSafe,
     branchOrBound,
-    solve,
-    getRandomInt
+    solve
 };

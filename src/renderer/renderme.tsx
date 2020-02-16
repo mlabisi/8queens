@@ -28,7 +28,7 @@ $(function () {
             case "hc":
                 solve(newBoard, 2);
                 break;
-            case "an":
+            case "ge":
                 solve(newBoard, 3);
                 break;
             default:
