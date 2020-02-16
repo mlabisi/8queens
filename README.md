@@ -1,6 +1,19 @@
 # 8queens 👑
 ![screencap](misc/screencap.png "Screencap of initial state")
 
+## Table of Contents
+- [Running 8queens](#running-8queens-)
+  * [Step One - Get the Source Code](#step-one---get-the-source-code)
+  * [Step Two - Step Two Install npm](#step-two---install-npm)
+  * [Step Three - Install Dependencies](#step-three---install-dependencies)
+  * [Step Four - Run The App Locally](#step-four---run-the-app-locally)
+- [Interacting with the GUI](#interacting-with-the-gui-)
+  * [Branch or Bound](#branch-or-bound)
+  * [Hill Climbing](#hill-climbing)
+  * [genetics](#genetics)
+- [Built With](#built-with-)
+- [Special Thanks To](#special-thanks-to-)
+
 ## Running 8queens 💻
 ### Step One - Get the Source Code
 Clone this repository by opening up the command line and running the following:
