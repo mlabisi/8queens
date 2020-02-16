@@ -23,13 +23,13 @@ $(function () {
         e.preventDefault();
         switch($(this)[0].elements.mode.value) {
             case "bb":
-                solve(newBoard);
+                solve(newBoard, 1);
                 break;
             case "hc":
-                solve(newBoard);
+                solve(newBoard, 2);
                 break;
             case "an":
-                solve(newBoard);
+                solve(newBoard, 3);
                 break;
             default:
                 solve(newBoard);
