@@ -1,18 +1,75 @@
 {
   "name": "8queens",
+  "productName": "8queens",
   "version": "1.0.0",
   "description": "AI + GUI for solving the 8 Queens Problem",
   "repository": "https://github.com/mlabisi/8queens.git",
-  "main": "index.js",
+  "main": "./.webpack/main",
   "scripts": {
-    "build": "webpack --config ./webpack.config.js",
-    "start": "npm run build && electron ./dist/app.js"
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Mora",
+    "email": "mslabisi@cpp.edu"
+  },
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "8queens"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ],
+      "plugins": [
+        [
+          "@electron-forge/plugin-webpack",
+          {
+            "mainConfig": "./webpack.main.config.js",
+            "renderer": {
+              "config": "./webpack.renderer.config.js",
+              "entryPoints": [
+                {
+                  "html": "./src/index.html",
+                  "js": "./src/renderer.js",
+                  "name": "app"
+                }
+              ]
+            }
+          }
+        ]
+      ]
+    }
+  },
   "devDependencies": {
-    "@chrisoakman/chessboardjs": "^1.0.0",
+    "@electron-forge/cli": "^6.0.0-beta.49",
+    "@electron-forge/maker-deb": "^6.0.0-beta.49",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.49",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.49",
+    "@electron-forge/maker-zip": "^6.0.0-beta.49",
+    "@electron-forge/plugin-webpack": "^6.0.0-beta.49",
+    "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5",
     "autoprefixer": "^9.7.4",
@@ -22,10 +79,12 @@
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.2",
     "electron": "^8.0.0",
+    "electron-packager": "^14.2.1",
     "electron-webpack": "^2.7.4",
     "file-loader": "^5.0.2",
     "html-webpack-plugin": "^3.2.0",
     "jquery": "^3.4.1",
+    "node-loader": "^0.6.0",
     "node-sass": "^4.13.1",
     "popper.js": "^1.16.1",
     "postcss-loader": "^3.0.0",
@@ -41,9 +100,7 @@
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   },
-  "electronWebpack": {
-    "main": {
-      "webpackConfig": "webpack.config.js"
-    }
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
   }
 }

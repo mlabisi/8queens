@@ -1,5 +1,5 @@
-import Queen from "../classes/Queen";
-import Board from "../classes/Board";
+import Queen from "./classes/Queen";
+import Board from "./classes/Board";
 
 function getCost(currentQueens) {
     let h = 0;
@@ -170,3 +170,5 @@ export {
     branchOrBound,
     solve
 };
+
+console.log('👋 This message is being logged by "functions.js", included via webpack');

@@ -1,0 +1,20 @@
+body {
+    font: caption;
+}
+
+#board {
+    width: calc(100vw - 250px);
+    height: calc(96vw - 300px);
+}
+
+.row {
+    display: flex;
+}
+
+.left {
+    flex: 75%;
+}
+
+.right {
+    flex: 25%;
+}

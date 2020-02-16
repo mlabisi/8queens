@@ -1,8 +1,23 @@
 let $ = require('jquery');
-import Board from "../classes/Board";
-let {solve} = require('../solver/functions');
+import './index.css';
+import {Chessboard} from 'cm-chessboard';
+import Board from "./classes/Board";
+let {solve} = require('./functions');
 
 let newBoard = new Board(8);
+
+function showBoard() {
+    let props = {
+        position: "empty", // set as fen, "start" or "empty"
+        style: {
+            cssClass: "default",
+            showCoordinates: false, // show ranks and files
+            showBorder: true, // display a border around the board
+        }
+    };
+
+    window.board = new Chessboard(document.getElementById("board"), props);
+}
 
 function toFEN(og) {
     og = og.split('').map(val => parseInt(val) + 1);
@@ -19,6 +34,10 @@ function toFEN(og) {
 }
 
 $(function () {
+    $( document ).ready(function() {
+        showBoard();
+    });
+
     $('form#settingsform').submit(function(e) {
         e.preventDefault();
         switch($(this)[0].elements.mode.value) {
@@ -36,7 +55,8 @@ $(function () {
 
         }
 
-        // @ts-ignore
         window.board.setPosition(toFEN(newBoard.toString()));
     });
 });
+
+console.log('👋 This message is being logged by "renderer.js", included via webpack');

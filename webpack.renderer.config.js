@@ -1,0 +1,20 @@
+const rules = require('./webpack.rules');
+const CopyPlugin = require('copy-webpack-plugin');
+
+rules.push({
+  test: /\.css$/,
+  use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+});
+
+module.exports = {
+  // Put your normal webpack config below here
+  module: {
+    rules,
+  },
+  plugins: [
+    new CopyPlugin([
+      { from: './src/assets/images/chessboard-sprite.svg', to: './assets/images/chessboard-sprite.svg' },
+      { from: './src/styles/cm-chessboard.css', to: './styles/cm-chessboard.css' }
+    ])
+  ]
+};

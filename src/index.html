@@ -4,29 +4,6 @@
     <meta charset="UTF-8">
     <title>8 Queens Solver</title>
     <link rel="stylesheet" href="./styles/cm-chessboard.css"/>
-
-    <style type="text/css">
-        body {
-            font: caption;
-        }
-
-        #board {
-            width: calc(100vw - 250px);
-            height: calc(96vw - 300px);
-        }
-
-        .row {
-            display: flex;
-        }
-
-        .left {
-            flex: 75%;
-        }
-
-        .right {
-            flex: 25%;
-        }
-    </style>
 </head>
 
 <body>
@@ -61,21 +38,5 @@
     </div>
 
 </div>
-
-<script type="module">
-    import {Chessboard} from '../node_modules/cm-chessboard/src/cm-chessboard/Chessboard.js';
-
-    let props = {
-        position: "empty", // set as fen, "start" or "empty"
-        style: {
-            cssClass: "default",
-            showCoordinates: false, // show ranks and files
-            showBorder: true, // display a border around the board
-        }
-    };
-
-    window.board = new Chessboard(document.getElementById("board"), props);
-</script>
-<script src="renderme.js"></script>
 </body>
 </html>
