@@ -23,17 +23,17 @@ Now that the dependencies have been installed, you can run 8queens locally! To d
 ## Interacting with the GUI 🕹
 The 8queens GUI is very simple. Use the radio buttons on the right-hand side of the screen to select the algorithm you'd like to run.
 
-##### Branch or Bound
+### Branch or Bound
 ![branch or bound demo](misc/bb.gif)
 > This optimization-based algorithm places the queens on the board randomly, one per column. The algorithm then works to reduce the number of pairs of attacking queens. 
 
 
-##### Hill Climbing
+### Hill Climbing
 ![hill climbing demo](misc/hc.gif)
 > Using the concept of the global optimum, this algorithm starts with one queen per column, then moves queens one at a time, each one within its own column.
 _If the algorithm gets stuck at the local optimum, a new random state will be generated and the process will repeat._
 
-##### Genetics
+### Genetics
 ![genetics demo](misc/ge.gif)
 > Based on the theory of evolution and natural selection, this algorithm introduces the concepts of populations, generations, and mutations in order to implement a "survival-of-the-fittest" strategy. The most optimal successor is chosen for each generation.
 
