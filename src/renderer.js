@@ -22,11 +22,11 @@ function showBoard() {
 function toFEN(og) {
     og = og.split('').map(val => parseInt(val) + 1);
     let str = "";
-    for(let i = 0; i < 8; i++) {
+    for(let i = 0; i < og.length; i++) {
         str += (og[i] === 1 ? "" : og[i] - 1)
-            + "q" + ((8 - og[i]) === 0 ? "" : (8 - og[i]));
+            + "q" + ((og.length - og[i]) === 0 ? "" : (og.length - og[i]));
 
-        if (i < 7) {
+        if (i < (og.length - 1)) {
             str += "/";
         }
     }
