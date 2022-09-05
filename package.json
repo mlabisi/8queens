@@ -84,7 +84,7 @@
     "file-loader": "^5.0.2",
     "html-webpack-plugin": "^4.5.2",
     "jquery": "^3.6.0",
-    "node-loader": "^0.6.0",
+    "node-loader": "^1.0.3",
     "node-sass": "^7.0.1",
     "popper.js": "^1.16.1",
     "postcss-loader": "^3.0.0",
