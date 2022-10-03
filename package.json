@@ -75,7 +75,7 @@
     "autoprefixer": "^9.8.8",
     "bootstrap": "^4.6.2",
     "bootstrap-vue": "^2.22.0",
-    "cm-chessboard": "^5.2.3",
+    "cm-chessboard": "^5.2.4",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.2",
     "electron": "^20.1.1",
