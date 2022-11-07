@@ -83,7 +83,7 @@
     "electron-webpack": "^2.7.4",
     "file-loader": "^5.0.2",
     "html-webpack-plugin": "^4.5.2",
-    "jquery": "^3.6.0",
+    "jquery": "^3.6.1",
     "node-loader": "^1.0.3",
     "node-sass": "^7.0.1",
     "popper.js": "^1.16.1",
