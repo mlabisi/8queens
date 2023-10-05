@@ -78,7 +78,7 @@
     "cm-chessboard": "^5.2.7",
     "copy-webpack-plugin": "^6.4.1",
     "css-loader": "^3.4.2",
-    "electron": "^22.3.24",
+    "electron": "^22.3.25",
     "electron-packager": "^16.0.0",
     "electron-webpack": "^2.7.4",
     "file-loader": "^5.0.2",
