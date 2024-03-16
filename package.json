@@ -79,7 +79,7 @@
     "copy-webpack-plugin": "^6.4.1",
     "css-loader": "^6.10.0",
     "electron": "^22.3.25",
-    "electron-packager": "^16.0.0",
+    "electron-packager": "^17.1.2",
     "electron-webpack": "^2.7.4",
     "file-loader": "^5.0.2",
     "html-webpack-plugin": "^5.6.0",
