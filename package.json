@@ -73,7 +73,7 @@
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5",
     "autoprefixer": "^10.4.17",
-    "bootstrap": "^4.6.2",
+    "bootstrap": "^5.0.0",
     "bootstrap-vue": "^2.22.0",
     "cm-chessboard": "^8.5.0",
     "copy-webpack-plugin": "^6.4.1",
